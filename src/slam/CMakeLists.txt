@@ -15,8 +15,8 @@ find_package(catkin REQUIRED COMPONENTS
 catkin_package(
                CATKIN_DEPENDS roscpp std_msgs message_runtime sensor_msgs
               )
-set(NOOS_INCLUDE "/home/ort/noos-api-cpp/")
-find_library(NOOS_LIBRARY NAMES noos REQUIRED PATHS "/home/ort/noos-api-cpp/build/")
+set(NOOS_INCLUDE "/usr/local/lib/include/noos")
+find_library(NOOS_LIBRARY NAMES noos)
 message(STATUS "${NOOS_LIBRARY}")
 find_package(OpenSSL REQUIRED)
 find_package(Boost COMPONENTS system REQUIRED)
