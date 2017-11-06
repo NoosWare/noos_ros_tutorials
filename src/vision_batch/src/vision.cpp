@@ -16,7 +16,9 @@ noos::object::picture mat_to_picture::operator()(cv::Mat img)
  */
 vision::vision()
 : query__(std::bind(&vision::callback, this, std::placeholders::_1),
-          default_node)
+          default_node),
+  exp_tie__([&](const auto data){ this->face_expression_cb(data);}),
+  age_tie__([&](const auto data) { this->age_detection_cb(data);})
 {}
 
 void vision::callback(std::vector<noos::object::face> faces)
@@ -87,10 +89,22 @@ void vision::batch_send(noos::object::picture new_pic)
      * A different callable object is created to send the vision batch.
      * The advance is that only one image is sent to use different services
      * at the same time.
-     */
+
     callable<vbatch, false> batch_query(new_pic,
                                        default_node,
                                        tied<face_expression>(std::bind(&vision::face_expression_cb, this, std::placeholders::_1)),
                                        tied<age_detection>(std::bind(&vision::age_detection_cb, this, std::placeholders::_1)));
-    batch_query.send();
+     */
+   
+    if (!batch__) {
+        batch__ = std::make_unique<callable<vbatch,true>>(new_pic, 
+                                                          default_node, 
+                                                          exp_tie__,
+                                                          age_tie__); 
+    } 
+    else {
+        batch__->object = vbatch(new_pic, exp_tie__, age_tie__);
+    }
+    assert(batch__);
+    batch__->send();
 }

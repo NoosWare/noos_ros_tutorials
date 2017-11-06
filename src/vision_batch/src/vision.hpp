@@ -27,15 +27,6 @@ struct mat_to_picture
 class vision
 {
 public:
-	//
-    // we alias the `vision_batch` template arguments.
-    // NOTE: vision_batch ties a `cloud_type` (e.g., face_detection or human_detection)
-    //       to a callback.
-    //       Therefore you have to wrap them using `tied` (or `make_tie`) in order
-    //       to identify which callback belongs to which cloud query.
-    //
-    using vbatch = vision_batch<tied<face_expression>,tied<age_detection>>;
-
 	/// @brief constructor
     vision();
 
@@ -46,6 +37,8 @@ public:
     void send(cv::Mat pic);
 
 private:
+    using vbatch = vision_batch<tied<face_expression>,tied<age_detection>>;
+
 	//face expression callback
 	void face_expression_cb(std::vector<std::pair<std::string,float>> data);
 
@@ -58,12 +51,17 @@ private:
     //crop an image into an area of interest
     noos::object::picture roi_image(const noos::object::face face);
 
-	//a callable for face_detection
+	// callable for face_detection
     callable<face_detection, true> query__;
+
+    // callable for vision_batch
+    std::unique_ptr<callable<vbatch, true>> batch__;
 	
     // save the picture 
     cv::Mat pic__;
 
+    noos::cloud::tied<face_expression> exp_tie__;
+    noos::cloud::tied<age_detection>   age_tie__;
 };
 
 
