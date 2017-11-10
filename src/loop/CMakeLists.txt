@@ -18,7 +18,6 @@ find_package(Boost REQUIRED COMPONENTS system)
 find_library(NOOS_LIBRARIES NAMES noos)
 message(STATUS "${NOOS_LIBRARIES}")
 find_package(OpenSSL REQUIRED)
-find_package(Boost COMPONENTS system REQUIRED)
 find_package(Threads REQUIRED)
 find_package(OpenCV REQUIRED)
 

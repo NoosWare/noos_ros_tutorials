@@ -85,17 +85,6 @@ noos::object::picture vision::roi_image(const noos::object::face face)
 
 void vision::batch_send(noos::object::picture new_pic)
 {
-    /*
-     * A different callable object is created to send the vision batch.
-     * The advance is that only one image is sent to use different services
-     * at the same time.
-
-    callable<vbatch, false> batch_query(new_pic,
-                                       default_node,
-                                       tied<face_expression>(std::bind(&vision::face_expression_cb, this, std::placeholders::_1)),
-                                       tied<age_detection>(std::bind(&vision::age_detection_cb, this, std::placeholders::_1)));
-     */
-   
     if (!batch__) {
         batch__ = std::make_unique<callable<vbatch,true>>(new_pic, 
                                                           default_node, 
