@@ -18,10 +18,10 @@ struct mat_to_picture
     }
 };
 /*
- * Example of vision batch 
+ * Example of a simple loop
  */
 int main(int argc, char **argv) {
-    ros::init(argc, argv, "vision_batch");
+    ros::init(argc, argv, "loop");
     ros::NodeHandle n;
    /*
      * Construct a lambda, std::function or bind your own functor.
@@ -62,10 +62,10 @@ int main(int argc, char **argv) {
          *       cv::imencode in the line 15
          */
         frame = cv::imread("data/lenna.png");
-	}
+    }
 
     /// Loop
-	ros::Rate loop_rate(1);
+    ros::Rate loop_rate(1);
     while (ros::ok()) {
         if (camera) { 
             /* Video capture */
@@ -77,7 +77,7 @@ int main(int argc, char **argv) {
          * which is sent to the platform without create a different
          * callable object
          */
-		callable_object.object = face_detection(mat_to_picture()(frame)); 
+        callable_object.object = face_detection(mat_to_picture()(frame)); 
         callable_object.send();
 
         loop_rate.sleep(); 

@@ -40,7 +40,7 @@ int main(int argc, char **argv) {
     vision vision_obj;
 
     /// Loop
-	ros::Rate loop_rate(1);
+    ros::Rate loop_rate(1);
     while (ros::ok()) {
         if (camera) { 
             /* Video capture */

@@ -15,7 +15,10 @@ find_package(catkin REQUIRED COMPONENTS
 
 ## System dependencies are found with CMake's conventions
 find_package(Boost REQUIRED COMPONENTS system)
-find_library(NOOS_LIBRARIES NAMES noos)
+find_package(noos REQUIRED)
+if (NOT NOOS_LIBRARIES)
+    message(FATAL_ERROR "No NOOS library found")
+endif()
 message(STATUS "${NOOS_LIBRARIES}")
 find_package(OpenSSL REQUIRED)
 find_package(Boost COMPONENTS system REQUIRED)
@@ -33,7 +36,6 @@ catkin_package(
 ## Specify additional locations of header files
 ## Your package locations should be listed before other locations
 # include_directories(include)
-set(NOOS_INCLUDE_DIRS "/usr/local/lib/include/noos")
 include_directories(
                       ${catkin_INCLUDE_DIRS}
                       ${NOOS_INCLUDE_DIRS}

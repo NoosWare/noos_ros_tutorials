@@ -10,7 +10,7 @@ slam::slam()
 void slam::read_laser(const sensor_msgs::LaserScan::ConstPtr & scan)
 {
     //
-    //The frequency of the laser is higer than the processing time in 
+    //The frequency of the laser is higher than the processing time in 
     //the platform (40-50 ms). So the measures are going to be sent every
     //~100 ms.
     //

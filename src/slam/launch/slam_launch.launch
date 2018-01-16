@@ -1,11 +1,9 @@
 <?xml version="1.0"?>
 <launch>
-    <env name="ROS_HOME" value="/home/ort/catkin_ws/" />  
-
     <!-- RPLIDAR node -->
-    <node name="rplidar_ros" pkg="rplidar_ros" type="rplidarNodeClient" respawn="false" output="log" cwd="ROS_HOME" required="true"/>   
+    <node name="rplidar_ros" pkg="rplidar_ros" type="rplidarNodeClient" respawn="false" output="log" required="true"/>   
 
     <!-- SLAM node -->
-    <node name="slam" pkg="slam" type="slam_node" respawn="false" output="screen" cwd="ROS_HOME" required="true"/>
+    <node name="slam" pkg="slam" type="slam_node" respawn="false" output="screen" required="true"/>
 
 </launch>
