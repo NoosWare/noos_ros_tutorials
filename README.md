@@ -10,6 +10,13 @@ catkin_make
 source devel/setup.bash
 ```
 
+If your Noos API is not installed in the default path `/usr/local`
+use the following line:
+
+```shell
+catkin_make -DCMAKE_INSTALL_PREFIX=your_path
+```
+
 ## Loop tutorial
 
 Loop is a basic example about how to use Noos API in a simple loop
@@ -61,6 +68,13 @@ pose of the robot in the map. The platform creates internally a map called
 To read the laser data other node is required which is going to publish 
 the laser data in the topic `/scan`.
 In this example is used the `RPlidar version 2` laser and their [ROS package](https://github.com/robopeak/rplidar_ros/tree/4a54ec7a333c3ebb3bc968c72d19d2ae49c8b28b).
+It is a submodule, so for using it you need the next steps first:
+
+```shell
+git submodule init
+git submodule update
+catkin_make
+```
 
 ###Run SLAM tutorial
 If you have an `RPlidar v2` you can use the launch file that is created

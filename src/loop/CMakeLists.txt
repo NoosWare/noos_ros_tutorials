@@ -12,6 +12,7 @@ find_package(catkin REQUIRED COMPONENTS
 
 ## System dependencies are found with CMake's conventions
 find_package(Boost REQUIRED COMPONENTS system)
+SET(CMAKE_INSTALL_PREFIX "/usr/local")
 find_package(noos REQUIRED)
 if (NOT NOOS_LIBRARIES)
     message(FATAL_ERROR "No NOOS library found")
