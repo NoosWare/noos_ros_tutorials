@@ -76,7 +76,7 @@ git submodule update
 catkin_make
 ```
 
-###Run SLAM tutorial
+### Run SLAM tutorial
 If you have an `RPlidar v2` you can use the launch file that is created
 in this example:
 
@@ -90,7 +90,7 @@ If you create your own laser node, run your node and then :
 rosrun slam slam_node
 ```
 
-##Dependecies
+## Dependecies
 
 - ROS
 - Noos API
