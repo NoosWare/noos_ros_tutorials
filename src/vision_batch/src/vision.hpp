@@ -62,6 +62,12 @@ private:
 
     noos::cloud::tied<face_expression> exp_tie__;
     noos::cloud::tied<age_detection>   age_tie__;
+	/*
+     * IMPORTANT: You have to change your user and password. The example doesn't work
+     */
+    platform node_ = {"demo.noos.cloud", "9001", "your_pass", "your_user"};
+
+
 };
 
 

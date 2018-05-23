@@ -2,7 +2,7 @@
 
 slam::slam() 
 : callab_( std::bind(&slam::callback, this, std::placeholders::_1),
-           default_node,
+           node_,
            "example_map", "icp.ini", noos::object::laser()),
   t_begin__(ros::Time::now().toSec())
 {}

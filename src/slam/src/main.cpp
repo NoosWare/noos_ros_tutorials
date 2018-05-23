@@ -13,8 +13,13 @@ int main(int argc, char **argv)
         std::cout << "Success uploading the config file: " 
 			      << std::boolalpha << success << std::endl;
     };
+	/*
+     * IMPORTANT: You have to change your user and password. The example doesn't work
+     */
+    platform node = {"demo.noos.cloud", "9001", "your_pass", "your_user"};
+
     callable<upload_slam_config_file> config_callable(config_callback, 
-                                                      default_node, 
+                                                      node, 
                                                       config, 
                                                       "icp.ini", 
                                                       slam_type::icp);
