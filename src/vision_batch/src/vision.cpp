@@ -16,7 +16,7 @@ noos::object::picture mat_to_picture::operator()(cv::Mat img)
  */
 vision::vision()
 : query__(std::bind(&vision::callback, this, std::placeholders::_1),
-          default_node),
+          node_),
   exp_tie__([&](const auto data){ this->face_expression_cb(data);}),
   age_tie__([&](const auto data) { this->age_detection_cb(data);})
 {}
@@ -87,7 +87,7 @@ void vision::batch_send(noos::object::picture new_pic)
 {
     if (!batch__) {
         batch__ = std::make_unique<callable<vbatch,true>>(new_pic, 
-                                                          default_node, 
+                                                          node_, 
                                                           exp_tie__,
                                                           age_tie__); 
     } 

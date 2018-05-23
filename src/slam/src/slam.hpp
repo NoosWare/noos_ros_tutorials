@@ -29,6 +29,11 @@ private:
     callable<icp_slam, true> callab_;
     //Count time between calls
     double t_begin__;
+	/*
+     * IMPORTANT: You have to change your user and password. The example doesn't work
+     */
+    platform node_ = {"demo.noos.cloud", "9001", "your_pass", "your_user"};
+
 
 };
 

@@ -33,6 +33,14 @@ int main(int argc, char **argv) {
     auto callback = [&](std::vector<noos::object::face> faces) { 
         std::cout << "Found " << faces.size() << " faces!" << std::endl;
     };
+
+	/*
+     * We need to create a platform object with our user and password for using 
+     * the NOOS Cloud 
+     * IMPORTANT: You have to change your user and password. The example doesn't work
+     */
+    platform node = {"demo.noos.cloud", "9001", "your_pass", "your_user"};
+
     /*
      * The callable object is created. There are different ways to create
      * for creating this object. In this case, because the object is going
@@ -41,7 +49,7 @@ int main(int argc, char **argv) {
      * to created it before call the method `send` 
      */
     callable<face_detection,true> callable_object(callback, 
-                                                  default_node);
+                                                  node);
 
     /* 
      * If a camera is connected to the computer is going to capture an
